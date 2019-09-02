@@ -23,8 +23,8 @@ def quantizacaoUniforme2(img, K):
 
 if __name__ == "__main__":
 
-    filename = "art-angels.jpg"
-    cores = [2,8]
+    filename = "vapor.jpeg"
+    cores = [1,2]
 
     for cor in cores:
         img = cv2.imread(filename, 0)
