@@ -23,7 +23,7 @@ def quantizacaoUniforme2(img, K):
 
 if __name__ == "__main__":
 
-    filename = "vapor.jpeg"
+    filename = "minute.jpg"
     cores = [1,2]
 
     for cor in cores:
