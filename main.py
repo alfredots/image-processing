@@ -3,6 +3,7 @@ import cv2, os, math
 from Utils import Utils
 from Operations import Operations
 from Transformations import Transformations
+from Aritmetics import Aritmetics
 
 if __name__ == "__main__":
 
@@ -12,6 +13,7 @@ if __name__ == "__main__":
     print("3-componentes conectados")
     print("4-operações")
     print("5-transformações")
+    print("6-aritmeticas")
 
     option = input()
     
@@ -110,4 +112,21 @@ if __name__ == "__main__":
             teta = int(input("valor do teta: "))
             resultado = Transformations.rotate(img, teta)
             cv2.imwrite('imagens-geradas/ROTATE_TETA{teta}.jpg'.format(teta = teta),resultado)
+    
+    #aritmeticas
+    if option == "6":
+        print("1 - adição")
+        print("2 - subtração")
+        print("3 - multiplicação")
+        print("4 - divisão")
+
+        operation = int(input("digite a operação que deseja fazer:"))
+        filenameOne = "base-de-imagens/minute.jpg"
+        filenameTwo = "base-de-imagens/troye.jpg"
+
+        if operation == 1:
+            imgOne = cv2.imread(filenameOne, 1)
+            imgTwo = cv2.imread(filenameTwo, 1)
+            cv2.imshow('result.png',Aritmetics.add(imgOne, imgTwo))
+            cv2.waitKey() 
         
