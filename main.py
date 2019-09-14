@@ -20,7 +20,7 @@ if __name__ == "__main__":
     print("4-operações")
     print("5-transformações")
     print("6-aritmeticas")
-
+    print("7-sistemas de cores")
     option = input()
     
     #amostragem
@@ -120,3 +120,17 @@ if __name__ == "__main__":
         if operation == 4:
             resultImage = Options.optionAritmetic("div")
             showImage("divisão", resultImage)
+    
+    #sistema de cores
+    if option == "7":
+        print("1 - RGB pra Escala de cinza")
+        print("2 - RGB pra CMY")
+
+        operation = int(input("digite a conversão que deseja fazer:"))
+
+        if operation == 1:
+            resultImage = Options.optionSystemColor("grayscale")
+            showImage("grayscale", resultImage)
+        if operation == 2:
+            resultImage = Options.optionSystemColor("cmy")
+            showImage("CMY", resultImage)

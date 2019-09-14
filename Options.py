@@ -4,6 +4,7 @@ from Utils import Utils
 from Operations import Operations
 from Transformations import Transformations
 from Aritmetics import Aritmetics
+from ColorSystem import ColorSystem
 
 class Options:
 
@@ -57,3 +58,12 @@ class Options:
             return Aritmetics.mult(imgOne, imgTwo)
         if type == "div":
             return Aritmetics.div(imgOne, imgTwo)
+
+    @staticmethod
+    def optionSystemColor(sys):
+        img = cv2.imread(Options.getFilename("troye"),1)
+
+        if sys == "grayscale":
+            return ColorSystem.grayscale(img)
+        if sys == "cmy":
+            return ColorSystem.cmy(img)
