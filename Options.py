@@ -5,6 +5,7 @@ from Operations import Operations
 from Transformations import Transformations
 from Aritmetics import Aritmetics
 from ColorSystem import ColorSystem
+from Realce import Realce
 
 class Options:
 
@@ -67,3 +68,15 @@ class Options:
             return ColorSystem.grayscale(img)
         if sys == "cmy":
             return ColorSystem.cmy(img)
+
+    @staticmethod
+    def optionRealce(realce):
+        img = cv2.imread(Options.getFilename("troye"),0)
+
+        if realce == "ajuste":
+           return  img , Realce.normalizaContraste(img, 100, 250)
+        if realce == "negativo":
+           return  img , Realce.negativo(img)
+        if realce == "gama":
+           return  img , Realce.fatorGama(img, 50, 1.6)
+        

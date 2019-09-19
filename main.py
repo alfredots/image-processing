@@ -21,6 +21,7 @@ if __name__ == "__main__":
     print("5-transformações")
     print("6-aritmeticas")
     print("7-sistemas de cores")
+    print("9-realces")
     option = input()
     
     #amostragem
@@ -134,3 +135,9 @@ if __name__ == "__main__":
         if operation == 2:
             resultImage = Options.optionSystemColor("cmy")
             showImage("CMY", resultImage)
+
+    if option == "9":
+
+        originalImage,resultImage = Options.optionRealce("gama")
+        showImage("original", originalImage)
+        showImage("realce", resultImage)
