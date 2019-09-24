@@ -1,9 +1,15 @@
+
 import numpy as np
 import cv2, os, math
 from Utils import Utils
 from Operations import Operations
 from Transformations import Transformations
-from Aritmetics import Aritmetics
+from Options import Options
+
+
+def showImage(name, img):
+    cv2.imshow(name,img)
+    cv2.waitKey()
 
 if __name__ == "__main__":
 
@@ -14,40 +20,22 @@ if __name__ == "__main__":
     print("4-operações")
     print("5-transformações")
     print("6-aritmeticas")
-
+    print("7-sistemas de cores")
+    print("9-realces")
     option = input()
     
     #amostragem
     if option == "1":
-        filename = "base-de-imagens/minute.jpg"
-        n = int(input("n do valor:"))
-        img = cv2.imread(filename, 0)
-        amostra = Utils.amostragem(img, n)
-        cv2.imshow('result.jpg',amostra)
-        cv2.waitKey()
+        resultImage = Options.amostragem()
+        showImage("amostragem", resultImage)
 
     #quantização
     if option == "2":
-        filename = "base-de-imagens/art-angels.jpg"
-        img = cv2.imread(filename, 0)
-        cor = int(input("numero do cores:"))
-        resultado = Utils.quantizacaoUniforme(img, cor)
-        name, extension = os.path.splitext(filename)
-        path = 'imagens-geradas/'+name.split('/')[1]
-        new_filename = '{name}-quantizado-{k}{ext}'.format(name=path, k=cor, ext=extension)
-        print(new_filename)
-        cv2.imwrite(new_filename, resultado)
-    
+        Options.quantizacao()
+        
     #componentes conectados
     if option == "3":
-        filename = "base-de-imagens/art-angels.jpg"
-        img = cv2.imread(filename, 0)
-        resultado = Utils.connectedComponents(img)
-        name, extension = os.path.splitext(filename)
-        path = 'imagens-geradas/'+name.split('/')[1]
-        new_filename = '{name}-connected-components-{ext}'.format(name=path, ext=extension)
-        print(new_filename)
-        cv2.imwrite(new_filename, resultado)
+        Options.components()
 
     #operações
     if option == "4":
@@ -112,21 +100,44 @@ if __name__ == "__main__":
             teta = int(input("valor do teta: "))
             resultado = Transformations.rotate(img, teta)
             cv2.imwrite('imagens-geradas/ROTATE_TETA{teta}.jpg'.format(teta = teta),resultado)
-    
+
     #aritmeticas
     if option == "6":
-        print("1 - adição")
+        print("1 - soma")
         print("2 - subtração")
         print("3 - multiplicação")
         print("4 - divisão")
 
         operation = int(input("digite a operação que deseja fazer:"))
-        filenameOne = "base-de-imagens/minute.jpg"
-        filenameTwo = "base-de-imagens/troye.jpg"
+        if operation == 1:
+            resultImage = Options.optionAritmetic("soma")
+            showImage("soma", resultImage)
+        if operation == 2:
+            resultImage = Options.optionAritmetic("sub")
+            showImage("subtração", resultImage)
+        if operation == 3:
+            resultImage = Options.optionAritmetic("mult")
+            showImage("multiplicação", resultImage)
+        if operation == 4:
+            resultImage = Options.optionAritmetic("div")
+            showImage("divisão", resultImage)
+    
+    #sistema de cores
+    if option == "7":
+        print("1 - RGB pra Escala de cinza")
+        print("2 - RGB pra CMY")
+
+        operation = int(input("digite a conversão que deseja fazer:"))
 
         if operation == 1:
-            imgOne = cv2.imread(filenameOne, 1)
-            imgTwo = cv2.imread(filenameTwo, 1)
-            cv2.imshow('result.png',Aritmetics.add(imgOne, imgTwo))
-            cv2.waitKey() 
-        
+            resultImage = Options.optionSystemColor("grayscale")
+            showImage("grayscale", resultImage)
+        if operation == 2:
+            resultImage = Options.optionSystemColor("cmy")
+            showImage("CMY", resultImage)
+
+    if option == "9":
+
+        originalImage,resultImage = Options.optionRealce("gama")
+        showImage("original", originalImage)
+        showImage("realce", resultImage)
