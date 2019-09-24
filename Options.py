@@ -68,6 +68,8 @@ class Options:
             return ColorSystem.grayscale(img)
         if sys == "cmy":
             return ColorSystem.cmy(img)
+        if sys == "ycrcb":
+            return ColorSystem.YCrCb(img)
 
     @staticmethod
     def optionRealce(realce):
@@ -78,5 +80,13 @@ class Options:
         if realce == "negativo":
            return  img , Realce.negativo(img)
         if realce == "gama":
-           return  img , Realce.fatorGama(img, 50, 1.6)
+           return  img , Realce.fatorGama(img, 1, 0.8)
+        if realce == "linear":
+            return img, Realce.linear(img, 2, 16)
+        if realce == "log":
+            return img, Realce.logaritmico(img)
+        if realce == "quadratico":
+            return img, Realce.quadratico(img)
+        if realce == "raiz":
+            return img, Realce.raiz(img)
         

@@ -126,6 +126,7 @@ if __name__ == "__main__":
     if option == "7":
         print("1 - RGB pra Escala de cinza")
         print("2 - RGB pra CMY")
+        print("3 - RGB pra YCrCb")
 
         operation = int(input("digite a conversão que deseja fazer:"))
 
@@ -135,9 +136,48 @@ if __name__ == "__main__":
         if operation == 2:
             resultImage = Options.optionSystemColor("cmy")
             showImage("CMY", resultImage)
+        if operation == 3:
+            resultImage = Options.optionSystemColor("ycrcb")
+            showImage("YCrCb", resultImage)
 
+    #realce
     if option == "9":
+        print("1 - ajuste contraste")
+        print("2 - negativo")
+        print("3 - gama")
+        print("4 - linear")
+        print("5 - logaritimico")
+        print("6 - quadratico")
+        print("7 - raiz")
 
-        originalImage,resultImage = Options.optionRealce("gama")
-        showImage("original", originalImage)
-        showImage("realce", resultImage)
+        operation = int(input("digite o realce que deseja aplicar:"))
+        if operation == 1:
+            originalImage,resultImage = Options.optionRealce("ajuste")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 2:
+            originalImage,resultImage = Options.optionRealce("negativo")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 3:
+            originalImage,resultImage = Options.optionRealce("gama")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 4:
+            originalImage,resultImage = Options.optionRealce("linear")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 5:
+            originalImage,resultImage = Options.optionRealce("log")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 6:
+            originalImage,resultImage = Options.optionRealce("quadratico")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+        if operation == 7:
+            originalImage,resultImage = Options.optionRealce("raiz")
+            showImage("original", originalImage)
+            showImage("realce", resultImage)
+
+cv2.destroyAllWindows()
