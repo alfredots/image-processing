@@ -5,11 +5,18 @@ from Utils import Utils
 from Operations import Operations
 from Transformations import Transformations
 from Options import Options
-
+import matplotlib.pyplot as plt
 
 def showImage(name, img):
     cv2.imshow(name,img)
     cv2.waitKey()
+
+def showHistogram(name, hist):
+    x = np.arange(0, 256, 1)
+    sub = plt.subplot()
+    sub.bar(x, hist, 1, color = 'r')
+    sub.set_title(name)
+    plt.show()
 
 if __name__ == "__main__":
 
@@ -22,6 +29,8 @@ if __name__ == "__main__":
     print("6-aritmeticas")
     print("7-sistemas de cores")
     print("9-realces")
+    print("10-histograma")
+
     option = input()
     
     #amostragem
@@ -179,5 +188,24 @@ if __name__ == "__main__":
             originalImage,resultImage = Options.optionRealce("raiz")
             showImage("original", originalImage)
             showImage("realce", resultImage)
+
+    #histograma
+    if option == "10":
+        print("1 - gerar histograma")
+        print("2 - gerar histograma acumulado")
+        print("3 - gerar imagem equalizada")
+        operation = int(input("digite o realce que deseja aplicar:"))
+        if operation == 1:
+            originalImage,histogram = Options.optionHistograma("gera")
+            showImage("original image", originalImage)
+            showHistogram("original histogram", histogram)
+        if operation == 2:
+            originalImage,histogram = Options.optionHistograma("acumulado")
+            showImage("original image", originalImage)
+            showHistogram("acumulado histogram", histogram)
+        if operation == 3:
+            originalImage,equalizedImage = Options.optionHistograma("equalizado")
+            showImage("original image", originalImage)
+            showImage("equalized image", equalizedImage)
 
 cv2.destroyAllWindows()

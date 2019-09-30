@@ -6,6 +6,7 @@ from Transformations import Transformations
 from Aritmetics import Aritmetics
 from ColorSystem import ColorSystem
 from Realce import Realce
+from Histogram import Histogram
 
 class Options:
 
@@ -89,4 +90,15 @@ class Options:
             return img, Realce.quadratico(img)
         if realce == "raiz":
             return img, Realce.raiz(img)
+
+    @staticmethod
+    def optionHistograma(option):
+        img = cv2.imread(Options.getFilename("art-angels"),0)
+        if option == "gera":
+            return img, Histogram.gerar(img)
+        if option == "acumulado":
+            return img, Histogram.acumulado(img)
+        if option == "equalizado":
+            return img, Histogram.equaliza(img)
+
         
