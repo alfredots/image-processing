@@ -99,6 +99,6 @@ class Options:
         if option == "acumulado":
             return img, Histogram.acumulado(img)
         if option == "equalizado":
-            return img, Histogram.equaliza(img)
+            return img, np.uint8(Histogram.equaliza(img))
 
         
