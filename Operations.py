@@ -4,14 +4,31 @@ import cv2
 class Operations:
 
     @staticmethod
+    def binarizar(img):
+        rows, cols = img.shape
+
+        for i in range(rows):
+            for j in range(cols):
+                if(img[i,j] < 128):
+                    img[i,j] = 0
+                else:
+                    img[i,j] = 255
+        return img
+
+    @staticmethod
     def _or(imgOne, imgTwo):
         imgThree = imgOne.copy()
         rows, cols = imgOne.shape
         
+        imgOne = Operations.binarizar(imgOne)
+        imgTwo = Operations.binarizar(imgTwo)
+
         for i in range(rows):
             for j in range(cols):
-                if(imgOne[i,j]==128 or imgTwo[i,j]==128):
-                    imgThree[i,j] = 128
+                if(imgOne[i,j]==255 or imgTwo[i,j]==255):
+                    imgThree[i,j] = 255
+                else:
+                    imgThree[i,j] = 0
 
         return imgThree
 
@@ -20,11 +37,15 @@ class Operations:
         imgThree = imgOne.copy()
         rows, cols = imgOne.shape
         
+        imgOne = Operations.binarizar(imgOne)
+        imgTwo = Operations.binarizar(imgTwo)
+
         for i in range(rows):
             for j in range(cols):
-                if(imgOne[i,j]==128 and imgTwo[i,j]==128):
-                    imgThree[i,j] = 128
-
+                if(imgOne[i,j]==255 and imgTwo[i,j]==imgOne[i,j]):
+                    imgThree[i,j] = 255
+                else:
+                    imgThree[i,j] = 0
         return imgThree
 
     @staticmethod
@@ -32,25 +53,27 @@ class Operations:
         imgThree = imgOne.copy()
         rows, cols = imgOne.shape
         
+        imgOne = Operations.binarizar(imgOne)
+        imgTwo = Operations.binarizar(imgTwo)
+
         for i in range(rows):
             for j in range(cols):
-                a = imgOne[i,j]==128
-                b = imgTwo[i,j]==128 
-                if((a and not b) or (not a and b)):
-                    imgThree[i,j] = 128
+                if( imgTwo[i,j]!=imgOne[i,j]):
+                    imgThree[i,j] = 255
+                else:
+                    imgThree[i,j] = 0
 
         return imgThree
 
     @staticmethod
-    def _not (imgOne, imgTwo):
+    def _not (imgOne):
         imgThree = imgOne.copy()
         rows, cols = imgOne.shape
         
+        imgOne = Operations.binarizar(imgOne)
+
         for i in range(rows):
             for j in range(cols):
-                a = imgOne[i,j]==128
-                b = imgTwo[i,j]==128
-                if(a and (not b)):
-                    imgThree[i,j] = 128
+                imgThree[i,j] = 255 - imgOne[i,j]
 
         return imgThree

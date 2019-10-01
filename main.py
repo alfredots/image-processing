@@ -53,8 +53,8 @@ if __name__ == "__main__":
         print("3 - xor")
         print("4 - not")
         operation = input("digite a operação que deseja fazer:")
-        filenameOne = "base-de-imagens/minute-2.jpg"
-        filenameTwo = "base-de-imagens/troye-2.jpg"
+        filenameOne = "base-de-imagens/ball.jpg"
+        filenameTwo = "base-de-imagens/triangle.jpg"
         
         if operation == "1":
             imgOne = cv2.imread(filenameOne, 0)
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         if operation == "4":
             imgOne = cv2.imread(filenameOne, 0)
             imgTwo = cv2.imread(filenameTwo, 0)
-            cv2.imshow('result.png',Operations._not(imgOne, imgTwo))
+            cv2.imshow('result.png',Operations._not(imgOne))
             cv2.waitKey()
 
     #transformações
