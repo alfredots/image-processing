@@ -30,6 +30,8 @@ if __name__ == "__main__":
     print("7-sistemas de cores")
     print("9-realces")
     print("10-histograma")
+    print("11-dithering")
+    print("12-filtros")
 
     option = input()
     
@@ -207,5 +209,39 @@ if __name__ == "__main__":
             originalImage,equalizedImage = Options.optionHistograma("equalizado")
             showImage("original image", originalImage)
             showImage("equalized image", equalizedImage)
+
+    #dithering
+    if option == "11":
+        print("1 - randomico")
+        print("2 - aglomerado")
+        print("3 - dispersao")
+        operation = int(input("digite o dithering que deseja aplicar:"))
+        if operation == 1:
+            dithering = Options.optionDithering("normal")
+            showImage("Dithering", dithering)
+        if operation == 2:
+            dithering = Options.optionDithering("aglomerado")
+            showImage("Dithering", dithering)
+        if operation == 3:
+            dithering = Options.optionDithering("dispersao")
+            showImage("Dithering", dithering)
+
+    #filtros
+    if option == "12":
+        print("1 - media")
+        print("2 - gaussiano")
+        print("3 - mediana")
+        operation = int(input("digite o filtro que deseja aplicar:"))
+        if operation == 1:
+            img = Options.optionFilters("media")
+            cv2.imwrite('imagens-geradas/filtro-media.jpg'.format(),img)
+        if operation == 2:
+            img = Options.optionFilters("gaussiano")
+            cv2.imwrite('imagens-geradas/filtro-gaussiano.jpg'.format(),img)
+        if operation == 3:
+            img = Options.optionFilters("mediana")
+            cv2.imwrite('imagens-geradas/filtro-mediana.jpg'.format(),img)
+
+
 
 cv2.destroyAllWindows()

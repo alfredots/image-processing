@@ -7,6 +7,8 @@ from Aritmetics import Aritmetics
 from ColorSystem import ColorSystem
 from Realce import Realce
 from Histogram import Histogram
+from Dithering import Dithering
+from Filters import Filters
 
 class Options:
 
@@ -100,5 +102,25 @@ class Options:
             return img, Histogram.acumulado(img)
         if option == "equalizado":
             return img, np.uint8(Histogram.equaliza(img))
+
+    @staticmethod
+    def optionDithering(option):
+        img = cv2.imread(Options.getFilename("art-angels"),0)
+        if option == "normal":
+            return Dithering.dithering(img)
+        if option == "aglomerado":
+            return Dithering.aglomerado(img)
+        if option == "dispersao":
+            return Dithering.dispersao(img)
+
+    @staticmethod
+    def optionFilters(option):
+        img = cv2.imread(Options.getFilename("art-angels"),0)
+        if option == "media":
+            return Filters.media(img,3)
+        if option == "gaussiano":
+            return Filters.gaussian(img)
+        if option == "mediana":
+            return Filters.medianFilter(img,3)
 
         
