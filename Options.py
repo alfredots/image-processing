@@ -20,6 +20,7 @@ class Options:
             "minute2": "base-de-imagens/minute2.jpg",
             "troye2": "base-de-imagens/troye2.jpg",
             "art-angels": "base-de-imagens/art-angels.jpg",
+            "flor": "base-de-imagens/flor.jpg"
         }.get(name, "not found")
 
     @staticmethod
@@ -115,7 +116,7 @@ class Options:
 
     @staticmethod
     def optionFilters(option):
-        img = cv2.imread(Options.getFilename("art-angels"),0)
+        img = cv2.imread(Options.getFilename("flor"),0)
         if option == "media":
             return Filters.media(img,3)
         if option == "gaussiano":

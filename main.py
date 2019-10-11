@@ -241,6 +241,7 @@ if __name__ == "__main__":
         if operation == 3:
             img = Options.optionFilters("mediana")
             cv2.imwrite('imagens-geradas/filtro-mediana.jpg'.format(),img)
+        print("imagem gerada está salva na pasta imagens-geradas")
 
 
 
